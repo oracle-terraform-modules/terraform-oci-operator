@@ -1,0 +1,67 @@
+# Copyright (c) 2019, 2020 Oracle Corporation and/or affiliates.  All rights reserved.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
+# provider identity parameters
+
+api_fingerprint = ""
+
+api_private_key_path = ""
+
+region = ""
+
+tenancy_id = ""
+
+user_id = ""
+
+# general oci parameters
+
+compartment_id = ""
+
+label_prefix = "dev"
+
+# network parameters
+
+availability_domain = 1
+
+nat_route_id = ""
+
+netnum = 33
+
+newbits = 13
+
+vcn_id = ""
+
+operator_enabled = true
+
+operator_image_id = "Oracle"
+
+operator_instance_principal = true
+
+operator_shape = "VM.Standard.E2.2"
+
+operator_upgrade = false
+
+ssh_public_key = ""
+
+ssh_public_key_path = ""
+
+# notification
+
+notification_enabled = false
+
+notification_endpoint = ""
+
+notification_protocol = "EMAIL"
+
+notification_topic = "operator"
+
+tags = {
+  compute = {
+    "environment" = "dev"
+    "role"        = "operator"
+  }
+  network = {
+    "environment" = "dev"
+    "role"        = "operator"
+  }
+}
