@@ -206,12 +206,9 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |
 [source]
 ----
-compute = {
-  "environment" = "dev"
-  "role"        = "operator"
-}
-network = {
-  "environment" = "dev"
-  "role"        = "operator"
+tags = {
+    department  = "finance"
+    environment = "dev"
+    role        = "bastion"
 }
 ----

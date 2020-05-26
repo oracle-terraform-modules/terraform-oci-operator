@@ -4,11 +4,14 @@
 resource "oci_core_security_list" "operator" {
   compartment_id = var.compartment_id
   display_name   = "${var.label_prefix}-operator"
+  freeform_tags  = var.tags
 
   egress_security_rules {
     protocol    = local.all_protocols
     destination = local.anywhere
   }
+
+
 
   ingress_security_rules {
     # allow ssh
