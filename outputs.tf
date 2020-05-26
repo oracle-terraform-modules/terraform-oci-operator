@@ -6,5 +6,5 @@ output "operator_private_ip" {
 }
 
 output "operator_instance_principal_group_name" {
-  value = var.operator_enabled == true && var.enable_instance_principal == true ? oci_identity_dynamic_group.operator_instance_principal[0].name : null
+  value = var.operator_enabled == true && var.operator_instance_principal == true ? oci_identity_dynamic_group.operator_instance_principal[0].name : null
 }
