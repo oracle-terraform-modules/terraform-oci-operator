@@ -10,6 +10,7 @@ resource "oci_core_instance" "operator" {
     assign_public_ip = false
     display_name     = "${var.label_prefix}-operator-vnic"
     hostname_label   = "operator"
+    nsg_ids          = var.nsg_ids
     subnet_id        = oci_core_subnet.operator[0].id
   }
 

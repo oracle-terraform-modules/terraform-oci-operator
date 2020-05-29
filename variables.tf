@@ -69,6 +69,12 @@ variable "newbits" {
   type        = number
 }
 
+variable "nsg_ids" {
+  description = "Optional list of network security groups that the operator will be part of"
+  type        = list(string)
+  default     = []
+}
+
 variable "vcn_id" {
   description = "The id of the VCN to use when creating the operator resources."
   type        = string

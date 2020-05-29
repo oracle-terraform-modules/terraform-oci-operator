@@ -11,8 +11,6 @@ resource "oci_core_security_list" "operator" {
     destination = local.anywhere
   }
 
-
-
   ingress_security_rules {
     # allow ssh
     protocol = local.tcp_protocol
