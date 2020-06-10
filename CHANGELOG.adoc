@@ -7,6 +7,38 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== v1.0.6 (May 30,2020)
+
+=== Changes
+* removed image operating system version (#4)
+
+== v1.0.6 (May 30,2020)
+
+=== Changes
+* added label_prefix to operator hostname
+
+== v1.0.5 (May 27,2020)
+
+=== Changes
+* Added optional list of nsg_ids as parameter
+
+== v1.0.4 (May 27,2020)
+
+=== Changes
+* updated tags
+
+== v1.0.3 (May 27,2020)
+
+=== Changes
+* fixed wrong condition check
+
+
+== v1.0.1,v1.0.2 (May 27,2020)
+
+=== Changes
+* updated outputs
+
+
 == v1.0.0 (May 21,2020)
 
 === Changes
