@@ -4,7 +4,7 @@
 resource "oci_core_subnet" "operator" {
   cidr_block                 = cidrsubnet(local.vcn_cidr, var.newbits, var.netnum)
   compartment_id             = var.compartment_id
-  display_name               = "${var.label_prefix}-operator"
+  display_name               = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
   dns_label                  = "operator"
   freeform_tags              = var.tags
   prohibit_public_ip_on_vnic = true
