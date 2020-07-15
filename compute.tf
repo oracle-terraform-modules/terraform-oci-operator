@@ -8,13 +8,13 @@ resource "oci_core_instance" "operator" {
 
   create_vnic_details {
     assign_public_ip = false
-    display_name     = "${var.label_prefix}-operator-vnic"
-    hostname_label   = "${var.label_prefix}-operator"
+    display_name     = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
+    hostname_label   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
     nsg_ids          = var.nsg_ids
     subnet_id        = oci_core_subnet.operator[0].id
   }
 
-  display_name = "${var.label_prefix}-operator"
+  display_name = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
 
   # prevent the operator from destroying and recreating itself if the image ocid changes 
   lifecycle {

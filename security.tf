@@ -3,7 +3,7 @@
 
 resource "oci_core_security_list" "operator" {
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-operator"
+  display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
   freeform_tags  = var.tags
 
   egress_security_rules {
