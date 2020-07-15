@@ -7,10 +7,20 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
-== v1.0.6 (May 30,2020)
+== v1.0.8 (July 15,2020)
+
+=== Changes
+* Made label_prefix optional (#6)
+
+== v1.0.7 (May 30,2020)
 
 === Changes
 * removed image operating system version (#4)
+
+== v1.0.6 (May 30,2020)
+
+=== Changes
+* added label_prefix to operator hostname (#2)
 
 == v1.0.6 (May 30,2020)
 
