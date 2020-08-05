@@ -10,7 +10,7 @@ provider "oci" {
 resource "oci_identity_dynamic_group" "operator_instance_principal" {
   provider = oci.home
 
-  compartment_id = var.tenancy_id
+  compartment_id = var.root_compartment_id
   description    = "dynamic group to allow instances to call services for 1 operator"
   matching_rule  = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
   name           = var.label_prefix == "none" ? "operator-instance-principal" : "${var.label_prefix}-operator-instance-principal"
