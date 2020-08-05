@@ -7,6 +7,11 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== v1.0.9 (August 5,2020)
+
+=== Changes
+* Home provider configuration (#8)
+
 == v1.0.8 (July 15,2020)
 
 === Changes
