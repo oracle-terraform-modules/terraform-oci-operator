@@ -47,6 +47,7 @@ data "template_file" "oracle_cloud_init_file" {
 data "oci_core_images" "oracle_images" {
   compartment_id           = var.compartment_id
   operating_system         = "Oracle Linux"
+  operating_system_version = "7.8"
   shape                    = var.operator_shape
   sort_by                  = "TIMECREATED"
 }
