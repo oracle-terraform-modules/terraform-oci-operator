@@ -7,6 +7,9 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== v1.0.13 (August 31,2020)
+* Removed root_compartment_id
+
 == v1.0.12 (August 19,2020)
 
 === Changes
