@@ -4,13 +4,17 @@
 # create a home region provider for identity operations
 provider "oci" {
   alias            = "home"
+  fingerprint      = var.api_fingerprint
+  private_key_path = var.api_private_key_path
   region           = lookup(data.oci_identity_regions.home_region.regions[0], "name")
+  tenancy_ocid     = var.tenancy_id
+  user_ocid        = var.user_id
 }
 
 resource "oci_identity_dynamic_group" "operator_instance_principal" {
   provider = oci.home
 
-  compartment_id = var.root_compartment_id
+  compartment_id = var.tenancy_id
   description    = "dynamic group to allow instances to call services for 1 operator"
   matching_rule  = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
   name           = var.label_prefix == "none" ? "operator-instance-principal" : "${var.label_prefix}-operator-instance-principal"
