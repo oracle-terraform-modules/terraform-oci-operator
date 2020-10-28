@@ -3,8 +3,13 @@
 
 resource "oci_core_instance" "operator" {
   availability_domain = element(local.ad_names, (var.availability_domain - 1))
-  compartment_id      = var.compartment_id
-  freeform_tags       = var.tags
+
+  agent_config {
+    is_management_disabled = true
+  }
+
+  compartment_id = var.compartment_id
+  freeform_tags  = var.tags
 
   create_vnic_details {
     assign_public_ip = false
