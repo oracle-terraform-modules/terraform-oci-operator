@@ -39,7 +39,13 @@ operator_image_id = "Oracle"
 
 operator_instance_principal = true
 
-operator_shape = "VM.Standard.E2.2"
+operator_shape = {
+  # shape = "VM.Standard.E2.2"
+  shape="VM.Standard.E3.Flex",
+  ocpus=1,
+  memory=4,
+  boot_volume_size=50
+}
 
 operator_upgrade = false
 

@@ -102,9 +102,11 @@ variable "operator_instance_principal" {
 }
 
 variable "operator_shape" {
-  description = "The shape of operator instance."
-  default     = "VM.Standard.E2.2"
-  type        = string
+  description = "The shape of the operator instance."
+  default     = {
+   shape = "VM.Standard.E3.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
+  }
+  type        = map(any)
 }
 
 variable "operator_upgrade" {
