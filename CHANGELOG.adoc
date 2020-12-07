@@ -7,6 +7,17 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== v2.0.0 (November 3,2020)
+* Added support for flex shape (#24)
+* Enabled silent install for operator script (#23)
+* Set minimum version to Terraform 0.13 (#21 )
+
+== v1.0.15 (November 3,2020)
+* added a generated suffix so dynamic group name will be unique (#18)
+
+== v1.0.14 (October 28,2020)
+* Temporarily disabled OSMS so yum repos such as ol7_olcne11 is not disabled
+
 == v1.0.13 (August 31,2020)
 * Removed root_compartment_id
 
