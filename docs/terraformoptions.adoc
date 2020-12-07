@@ -139,9 +139,19 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Oracle
 
 |`operator_shape`
-|The shape of operator instance.
-|e.g. VM.Standard.E2.2
-|VM.Standard.E2.2
+|The shape of operator instance. This is now specified as a map and supports E3.Flex. If a non-Flex shape is specified, then the other parameters are ignored.
+|e.g. `operator_shape = {
+  shape="VM.Standard.E3.Flex",
+  ocpus=1,
+  memory=4,
+  boot_volume_size=50
+}`
+|`operator_shape = {
+  shape="VM.Standard.E3.Flex",
+  ocpus=1,
+  memory=4,
+  boot_volume_size=50
+}`
 
 |`operator_upgrade`
 |Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster.
@@ -214,6 +224,6 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 tags = {
     department  = "finance"
     environment = "dev"
-    role        = "bastion"
+    role        = "operator"
 }
 ----

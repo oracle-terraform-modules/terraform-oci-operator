@@ -21,6 +21,11 @@ resource "oci_core_instance" "operator" {
 
   display_name = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
 
+  launch_options {
+    boot_volume_type = "PARAVIRTUALIZED"
+    network_type     = "PARAVIRTUALIZED"
+  }
+  
   # prevent the operator from destroying and recreating itself if the image ocid changes 
   lifecycle {
     ignore_changes = [source_details[0].source_id]
@@ -31,7 +36,16 @@ resource "oci_core_instance" "operator" {
     user_data           = data.template_cloudinit_config.operator[0].rendered
   }
 
-  shape = var.operator_shape
+  shape = lookup(var.operator_shape, "shape", "VM.Standard.E2.2")
+
+  dynamic "shape_config" {
+    for_each = length(regexall("Flex", lookup(var.operator_shape, "shape", "VM.Standard.E3.Flex"))) > 0 ? [1] : []
+    content {
+      ocpus         = max(1, lookup(var.operator_shape, "ocpus", 1))
+      memory_in_gbs = (lookup(var.operator_shape, "memory", 4) / lookup(var.operator_shape, "ocpus", 1)) > 64 ? (lookup(var.operator_shape, "ocpus", 1) * 4) : lookup(var.operator_shape, "memory", 4)
+    }
+  }
+
 
   source_details {
     source_type = "image"
