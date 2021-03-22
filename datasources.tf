@@ -29,7 +29,11 @@ data "oci_core_vcn" "vcn" {
 data "template_file" "oracle_template" {
   template = file("${path.module}/scripts/operator.template.sh")
 
-  count = (var.operator_enabled == true && var.operator_image_id == "Oracle") ? 1 : 0
+  vars = {
+    ol = var.operating_system_version
+  }
+
+  count = (var.operator_enabled == true) ? 1 : 0
 }
 
 data "template_file" "oracle_cloud_init_file" {
@@ -41,13 +45,13 @@ data "template_file" "oracle_cloud_init_file" {
     timezone            = var.timezone
   }
 
-  count = (var.operator_enabled == true && var.operator_image_id == "Oracle") ? 1 : 0
+  count = (var.operator_enabled == true) ? 1 : 0
 }
 
 data "oci_core_images" "oracle_images" {
   compartment_id           = var.compartment_id
   operating_system         = "Oracle Linux"
-  operating_system_version = "7.9"
+  operating_system_version = var.operating_system_version
   shape                    = lookup(var.operator_shape, "shape", "VM.Standard.E2.2")
   sort_by                  = "TIMECREATED"
 }
