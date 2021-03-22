@@ -7,6 +7,9 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== v2.1.0 (March 22,2021)
+* Upgrade default version of operator host to Oracle Linux 8 (#26)
+
 == v2.0.0 (November 3,2020)
 * Added support for flex shape (#24)
 * Enabled silent install for operator script (#23)
