@@ -152,11 +152,15 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
   memory=4,
   boot_volume_size=50
 }`
-
 |`operator_upgrade`
 |Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster.
 |true/false
 |true
+
+|`operating_system_version`
+|The version of the Oracle Linux to use..
+|
+|8
 
 |`ssh_public_key`
 |the content of the ssh public key used to access the operator. set this or the ssh_public_key_path

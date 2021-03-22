@@ -109,6 +109,11 @@ variable "operator_shape" {
   type        = map(any)
 }
 
+variable "operating_system_version" {
+  description = "The version of the Oracle Linux to use."
+  default     = "8"
+  type        = string
+}
 variable "operator_upgrade" {
   description = "Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster."
   default     = false

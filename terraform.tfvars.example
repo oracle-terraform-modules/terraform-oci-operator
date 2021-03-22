@@ -47,6 +47,8 @@ operator_shape = {
   boot_volume_size=50
 }
 
+operating_system_version = "8"
+
 operator_upgrade = false
 
 ssh_public_key = ""
