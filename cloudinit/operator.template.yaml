@@ -3,8 +3,6 @@
 
 #cloud-config
 package_upgrade: ${operator_upgrade}
-packages:
-  - python3
 timezone: ${timezone}
 write_files:
 # setup script
