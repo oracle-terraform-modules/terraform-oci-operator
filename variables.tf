@@ -111,7 +111,7 @@ variable "operator_instance_principal" {
 variable "operator_shape" {
   description = "The shape of the operator instance."
   default = {
-    shape = "VM.Standard.A1.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
+    shape = "VM.Standard.E4.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
   }
   type = map(any)
 }
