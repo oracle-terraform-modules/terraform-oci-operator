@@ -83,14 +83,21 @@ variable "vcn_id" {
 
 # operator host parameters
 
+variable "operating_system_version" {
+  description = "The version of the Oracle Linux to use."
+  default     = "8"
+  type        = string
+}
+
 variable "operator_enabled" {
+  #! Deprecation notice: will be renamed to create_operator at next major release
   description = "whether to create the operator"
   default     = false
   type        = bool
 }
 
 variable "operator_image_id" {
-  description = "Provide a custom image id for the operator host or leave as Autonomous."
+  description = "Provide a custom image id for the operator host or leave as Oracle."
   default     = "Oracle"
   type        = string
 }
@@ -103,17 +110,18 @@ variable "operator_instance_principal" {
 
 variable "operator_shape" {
   description = "The shape of the operator instance."
-  default     = {
-   shape = "VM.Standard.E3.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
+  default = {
+    shape = "VM.Standard.E4.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
   }
-  type        = map(any)
+  type = map(any)
 }
 
-variable "operating_system_version" {
-  description = "The version of the Oracle Linux to use."
-  default     = "8"
+variable "operator_state" {
+  description = "The target state for the instance. Could be set to RUNNING or STOPPED. (Updatable)"
+  default     = "RUNNING"
   type        = string
 }
+
 variable "operator_upgrade" {
   description = "Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster."
   default     = false

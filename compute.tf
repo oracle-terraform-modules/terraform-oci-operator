@@ -46,11 +46,12 @@ resource "oci_core_instance" "operator" {
     }
   }
 
-
   source_details {
     source_type = "image"
     source_id   = local.operator_image_id
   }
+
+  state = var.operator_state
 
   timeouts {
     create = "60m"

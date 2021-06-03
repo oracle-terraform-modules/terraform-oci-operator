@@ -7,6 +7,20 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+= Unreleased
+
+== New features
+* New variable (`operator_state`) to specify state of operator host
+
+== Changes
+* Set default shape to E4.Flex
+
+== Deprecation notice
+
+The following variables will be renamed at the next major release of this module:
+
+* var.operator_enabled --> var.create_operator
+
 == v2.1.0 (March 22,2021)
 * Upgrade default version of operator host to Oracle Linux 8 (#26)
 
