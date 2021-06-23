@@ -128,7 +128,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`operator_enabled`
+|`create_operator`
 |whether to create the operator
 | true/false
 |true

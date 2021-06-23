@@ -1,4 +1,4 @@
-# Copyright 2017, 2019, Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright 2017, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 resource "oci_core_instance" "operator" {
@@ -12,11 +12,11 @@ resource "oci_core_instance" "operator" {
   freeform_tags  = var.tags
 
   create_vnic_details {
-    assign_public_ip = false
-    display_name     = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
-    hostname_label   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
-    nsg_ids          = var.nsg_ids
-    subnet_id        = oci_core_subnet.operator[0].id
+    assign_public_ip          = false
+    display_name              = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
+    hostname_label            = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
+    nsg_ids                   = concat(var.nsg_ids,[oci_core_network_security_group.operator[0].id])
+    subnet_id                 = oci_core_subnet.operator[0].id
   }
 
   display_name = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
@@ -25,7 +25,7 @@ resource "oci_core_instance" "operator" {
     boot_volume_type = "PARAVIRTUALIZED"
     network_type     = "PARAVIRTUALIZED"
   }
-  
+
   # prevent the operator from destroying and recreating itself if the image ocid changes 
   lifecycle {
     ignore_changes = [source_details[0].source_id]
@@ -36,10 +36,10 @@ resource "oci_core_instance" "operator" {
     user_data           = data.template_cloudinit_config.operator[0].rendered
   }
 
-  shape = lookup(var.operator_shape, "shape", "VM.Standard.E2.2")
+  shape = lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex")
 
   dynamic "shape_config" {
-    for_each = length(regexall("Flex", lookup(var.operator_shape, "shape", "VM.Standard.E3.Flex"))) > 0 ? [1] : []
+    for_each = length(regexall("Flex", lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex"))) > 0 ? [1] : []
     content {
       ocpus         = max(1, lookup(var.operator_shape, "ocpus", 1))
       memory_in_gbs = (lookup(var.operator_shape, "memory", 4) / lookup(var.operator_shape, "ocpus", 1)) > 64 ? (lookup(var.operator_shape, "ocpus", 1) * 4) : lookup(var.operator_shape, "memory", 4)
@@ -57,5 +57,5 @@ resource "oci_core_instance" "operator" {
     create = "60m"
   }
 
-  count = var.operator_enabled == true ? 1 : 0
+  count = var.create_operator == true ? 1 : 0
 }
