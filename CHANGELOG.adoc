@@ -10,7 +10,10 @@ The format is based on {uri-changelog}[Keep a Changelog].
 = Unreleased
 
 == New features
+* Set minimum Terraform version to 1.0.0
+* Renamed var.operator_enabled --> var.create_operator
 * New variable (`operator_state`) to specify state of operator host
+* Removed security list and using NSG instead
 
 == Changes
 * Set default shape to E4.Flex
