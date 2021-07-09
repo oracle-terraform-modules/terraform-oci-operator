@@ -76,7 +76,7 @@ provider "oci" {
 * `nat_route_id`
 * `vcn_id`
 * 1 of `ssh_public_key` or `ssh_public_key_path`
-* `operator_enabled`
+* `create_operator`
 
 . Optional parameters to override:
 

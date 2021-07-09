@@ -1,4 +1,4 @@
-# Copyright 2017, 2019, Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright 2017, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # create a home region provider for identity operations
@@ -24,7 +24,7 @@ resource "oci_identity_dynamic_group" "operator_instance_principal" {
   matching_rule  = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
   name           = var.label_prefix == "none" ? "operator-instance-principal-${substr(uuid(),0,8)}" : "${var.label_prefix}-operator-instance-principal-${substr(uuid(),0,8)}"
 
-  count = var.operator_enabled == true && var.operator_instance_principal == true ? 1 : 0
+  count = var.create_operator == true && var.operator_instance_principal == true ? 1 : 0
 }
 
 resource "oci_identity_policy" "operator_instance_principal" {
@@ -35,5 +35,5 @@ resource "oci_identity_policy" "operator_instance_principal" {
   name           = var.label_prefix == "none" ? "operator-instance-principal" : "${var.label_prefix}-operator-instance-principal"
   statements     = ["Allow dynamic-group ${oci_identity_dynamic_group.operator_instance_principal[0].name} to manage all-resources in compartment id ${var.compartment_id}"]
 
-  count = var.operator_enabled == true && var.operator_instance_principal == true ? 1 : 0
+  count = var.create_operator == true && var.operator_instance_principal == true ? 1 : 0
 }
