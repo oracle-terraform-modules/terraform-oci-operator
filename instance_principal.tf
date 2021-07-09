@@ -18,7 +18,7 @@ resource "oci_identity_dynamic_group" "operator_instance_principal" {
   description    = "dynamic group to allow instances to call services for 1 operator"
   
   lifecycle {
-    ignore_changes = [name]
+    ignore_changes = [name,defined_tags]
   }
 
   matching_rule  = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
