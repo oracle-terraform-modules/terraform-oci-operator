@@ -15,14 +15,14 @@ resource "oci_identity_dynamic_group" "operator_instance_principal" {
   provider = oci.home
 
   compartment_id = var.tenancy_id
-  description    = "dynamic group to allow instances to call services for 1 operator"
-  
+  description    = var.label_prefix == "none" ? "dynamic group to allow instances to call services for 1 operator" : "dynamic group with label ${var.label_prefix} to allow instances to call services for 1 operator"
+
   lifecycle {
-    ignore_changes = [name]
+    ignore_changes = [name, defined_tags]
   }
 
-  matching_rule  = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
-  name           = var.label_prefix == "none" ? "operator-instance-principal-${substr(uuid(),0,8)}" : "${var.label_prefix}-operator-instance-principal-${substr(uuid(),0,8)}"
+  matching_rule = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
+  name          = "operator-instance-principal-${substr(uuid(), 0, 8)}"
 
   count = var.create_operator == true && var.operator_instance_principal == true ? 1 : 0
 }
