@@ -4,7 +4,7 @@
 :idseparator: -
 
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
-:uri-bastion-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
+:uri-bastion-repo: https://github.com/oracle-terraform-modules/terraform-oci-bastion
 
 :uri-rel-file-base: link:{uri-repo}/blob/master
 :uri-rel-tree-base: link:{uri-repo}/tree/master
