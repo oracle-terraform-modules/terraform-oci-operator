@@ -10,9 +10,9 @@ data "oci_core_services" "all_oci_services" {
 }
 
 data "oci_identity_availability_domain" "ad" {
-    compartment_id = var.tenancy_id
+  compartment_id = var.tenancy_id
 
-    ad_number = var.availability_domain
+  ad_number = var.availability_domain
 }
 
 data "oci_identity_tenancy" "tenancy" {
@@ -58,8 +58,8 @@ data "template_cloudinit_config" "operator" {
             }
           )
         )
-        operator_upgrade = var.operator_upgrade
-        timezone         = var.timezone
+        operator_timezone = var.operator_timezone
+        upgrade_operator  = var.upgrade_operator
       }
     )
   }
