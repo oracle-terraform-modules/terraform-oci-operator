@@ -6,11 +6,26 @@
 
 locals {
   all_protocols = "all"
-  
-  anywhere          = "0.0.0.0/0"
-  ssh_port          = 22
-  tcp_protocol      = 6
+
+  anywhere = "0.0.0.0/0"
+
   operator_image_id = var.operator_image_id == "Oracle" ? data.oci_core_images.oracle_images[0].images.0.id : var.operator_image_id
-  osn               = lookup(data.oci_core_services.all_oci_services.services[0], "cidr_block")
-  vcn_cidr          = data.oci_core_vcn.vcn.cidr_block
+
+  operator_template = "${path.module}/cloudinit/operator.template.yaml"
+
+  operator_script_template = base64gzip(
+    templatefile("${path.module}/scripts/operator.template.sh",
+      {
+        ol = var.operating_system_version
+      }
+    )
+  )
+
+  osn = lookup(data.oci_core_services.all_oci_services.services[0], "cidr_block")
+
+  ssh_port = 22
+
+  tcp_protocol = 6
+
+  vcn_cidr = data.oci_core_vcn.vcn.cidr_block
 }

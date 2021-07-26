@@ -50,16 +50,10 @@ data "template_cloudinit_config" "operator" {
     filename     = "operator.yaml"
     content_type = "text/cloud-config"
     content = templatefile(
-      "${path.module}/cloudinit/operator.template.yaml", {
-        operator_sh_content = base64gzip(
-          templatefile("${path.module}/scripts/operator.template.sh",
-            {
-              ol = var.operating_system_version
-            }
-          )
-        )
-        operator_timezone = var.operator_timezone
-        upgrade_operator  = var.upgrade_operator
+      local.operator_template, {
+        operator_sh_content = local.operator_script_template,
+        operator_timezone   = var.operator_timezone,
+        upgrade_operator    = var.upgrade_operator,
       }
     )
   }
