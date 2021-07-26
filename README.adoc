@@ -4,6 +4,7 @@
 :idseparator: -
 
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
+:uri-bastion-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
 
 :uri-rel-file-base: link:{uri-repo}/blob/master
 :uri-rel-tree-base: link:{uri-repo}/tree/master
@@ -21,6 +22,7 @@
 :uri-networks-subnets-cidr: https://erikberg.com/notes/networks.html
 :uri-oci: https://cloud.oracle.com/cloud-infrastructure
 :uri-oci-documentation: https://docs.cloud.oracle.com/iaas/Content/home.htm
+:uri-oci-bastion: https://docs.oracle.com/en-us/iaas/Content/Bastion/home.htm
 :uri-oracle: https://www.oracle.com
 :uri-prereqs: {uri-docs}/prerequisites.adoc
 :uri-quickstart: {uri-docs}/quickstart.adoc
@@ -45,6 +47,8 @@ This module is primarily meant to be reusable and the operator instance is used 
 
 1. performing post-provisioning tasks with Terraform or other automation tools
 2. provide administrators access without the need to upload api authentication keys (instance_principal)
+
+It can be accessed either through a Bastion host (e.g. {uri-bastion-repo}[terraform-oci-bastion]) or through the {uri-oci-bastion}[OCI Bastion service].
 
 You can further use it as part of higher level Terraform modules.
 

@@ -70,5 +70,5 @@ notification_topic = "operator"
 tags = {
     department  = "finance"
     environment = "dev"
-    role        = "bastion"
+    role        = "operator"
 }

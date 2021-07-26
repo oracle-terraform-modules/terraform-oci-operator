@@ -5,8 +5,8 @@
 # https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
 
 locals {
-  all_protocols     = "all"
-  ad_names          = data.template_file.ad_names.*.rendered
+  all_protocols = "all"
+  
   anywhere          = "0.0.0.0/0"
   ssh_port          = 22
   tcp_protocol      = 6

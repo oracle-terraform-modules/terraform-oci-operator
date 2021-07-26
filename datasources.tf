@@ -9,13 +9,10 @@ data "oci_core_services" "all_oci_services" {
   }
 }
 
-data "oci_identity_availability_domains" "ad_list" {
-  compartment_id = var.tenancy_id
-}
+data "oci_identity_availability_domain" "ad" {
+    compartment_id = var.tenancy_id
 
-data "template_file" "ad_names" {
-  count    = length(data.oci_identity_availability_domains.ad_list.availability_domains)
-  template = lookup(data.oci_identity_availability_domains.ad_list.availability_domains[count.index], "name")
+    ad_number = var.availability_domain
 }
 
 data "oci_identity_tenancy" "tenancy" {
@@ -32,28 +29,6 @@ data "oci_identity_regions" "home_region" {
 
 data "oci_core_vcn" "vcn" {
   vcn_id = var.vcn_id
-}
-
-data "template_file" "oracle_template" {
-  template = file("${path.module}/scripts/operator.template.sh")
-
-  vars = {
-    ol = var.operating_system_version
-  }
-
-  count = (var.create_operator == true) ? 1 : 0
-}
-
-data "template_file" "oracle_cloud_init_file" {
-  template = file("${path.module}/cloudinit/operator.template.yaml")
-
-  vars = {
-    operator_sh_content = base64gzip(data.template_file.oracle_template[0].rendered)
-    operator_upgrade    = var.operator_upgrade
-    timezone            = var.timezone
-  }
-
-  count = (var.create_operator == true) ? 1 : 0
 }
 
 data "oci_core_images" "oracle_images" {
@@ -74,14 +49,26 @@ data "template_cloudinit_config" "operator" {
   part {
     filename     = "operator.yaml"
     content_type = "text/cloud-config"
-    content      = data.template_file.oracle_cloud_init_file[0].rendered
+    content = templatefile(
+      "${path.module}/cloudinit/operator.template.yaml", {
+        operator_sh_content = base64gzip(
+          templatefile("${path.module}/scripts/operator.template.sh",
+            {
+              ol = var.operating_system_version
+            }
+          )
+        )
+        operator_upgrade = var.operator_upgrade
+        timezone         = var.timezone
+      }
+    )
   }
   count = var.create_operator == true ? 1 : 0
 }
 
 # Gets a list of VNIC attachments on the operator instance
 data "oci_core_vnic_attachments" "operator_vnics_attachments" {
-  availability_domain = element(local.ad_names, (var.availability_domain - 1))
+  availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_id
   depends_on          = [oci_core_instance.operator]
   instance_id         = oci_core_instance.operator[0].id

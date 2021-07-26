@@ -83,17 +83,16 @@ variable "vcn_id" {
 
 # operator host parameters
 
+variable "create_operator" {
+  description = "whether to create the operator"
+  default     = false
+  type        = bool
+}
+
 variable "operating_system_version" {
   description = "The version of the Oracle Linux to use."
   default     = "8"
   type        = string
-}
-
-variable "create_operator" {
-  #! Deprecation notice: will be renamed to create_operator at next major release
-  description = "whether to create the operator"
-  default     = false
-  type        = bool
 }
 
 variable "operator_image_id" {
@@ -174,11 +173,11 @@ variable "notification_topic" {
 
 # tagging
 variable "tags" {
-  description = "Freeform tags for bastion"
+  description = "Freeform tags for operator"
   default = {
     department  = "finance"
     environment = "dev"
-    role        = "bastion"
+    role        = "operator"
   }
   type = map(any)
 }
