@@ -4,7 +4,6 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 if [ ${ol} = 8 ]; then
-  dnf makecache
   dnf config-manager --enable ol8_developer && dnf -y install python3-oci-cli
 else
   yum -y -t update --security

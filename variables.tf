@@ -83,17 +83,16 @@ variable "vcn_id" {
 
 # operator host parameters
 
+variable "create_operator" {
+  description = "whether to create the operator"
+  default     = false
+  type        = bool
+}
+
 variable "operating_system_version" {
   description = "The version of the Oracle Linux to use."
   default     = "8"
   type        = string
-}
-
-variable "create_operator" {
-  #! Deprecation notice: will be renamed to create_operator at next major release
-  description = "whether to create the operator"
-  default     = false
-  type        = bool
 }
 
 variable "operator_image_id" {
@@ -122,12 +121,6 @@ variable "operator_state" {
   type        = string
 }
 
-variable "operator_upgrade" {
-  description = "Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster."
-  default     = false
-  type        = bool
-}
-
 variable "ssh_public_key" {
   description = "the content of the ssh public key used to access the operator. set this or the ssh_public_key_path"
   default     = ""
@@ -140,11 +133,18 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
-variable "timezone" {
+variable "operator_timezone" {
   description = "The preferred timezone for the operator host."
   default     = "Australia/Sydney"
   type        = string
 }
+
+variable "upgrade_operator" {
+  description = "Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster."
+  default     = false
+  type        = bool
+}
+
 
 # operator notification
 
@@ -174,11 +174,11 @@ variable "notification_topic" {
 
 # tagging
 variable "tags" {
-  description = "Freeform tags for bastion"
+  description = "Freeform tags for operator"
   default = {
     department  = "finance"
     environment = "dev"
-    role        = "bastion"
+    role        = "operator"
   }
   type = map(any)
 }

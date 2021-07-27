@@ -10,6 +10,11 @@ The format is based on {uri-changelog}[Keep a Changelog].
 = Unreleased
 
 == New features
+* Renamed variable operator_upgrade --> upgrade_operator
+* Renamed variable timezone --> operator_timezone
+* Added support for Bastion service
+* AD lookup mechanism reimplemented to remove dependency on deprecated template_file data source
+* Replaced deprecated template_file data source with templatefile function
 * Set minimum Terraform version to 1.0.0
 * Renamed var.operator_enabled --> var.create_operator
 * New variable (`operator_state`) to specify state of operator host

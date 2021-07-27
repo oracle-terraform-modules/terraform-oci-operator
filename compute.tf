@@ -2,21 +2,29 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 resource "oci_core_instance" "operator" {
-  availability_domain = element(local.ad_names, (var.availability_domain - 1))
+  availability_domain = data.oci_identity_availability_domain.ad.name
 
   agent_config {
-    is_management_disabled = true
-  }
 
+    are_all_plugins_disabled = false
+    is_management_disabled   = false
+    is_monitoring_disabled   = false
+
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Bastion"
+    }
+  }
+  
   compartment_id = var.compartment_id
   freeform_tags  = var.tags
 
   create_vnic_details {
-    assign_public_ip          = false
-    display_name              = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
-    hostname_label            = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
-    nsg_ids                   = concat(var.nsg_ids,[oci_core_network_security_group.operator[0].id])
-    subnet_id                 = oci_core_subnet.operator[0].id
+    assign_public_ip = false
+    display_name     = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
+    hostname_label   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
+    nsg_ids          = concat(var.nsg_ids, [oci_core_network_security_group.operator[0].id])
+    subnet_id        = oci_core_subnet.operator[0].id
   }
 
   display_name = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
@@ -33,7 +41,7 @@ resource "oci_core_instance" "operator" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
-    user_data           = data.template_cloudinit_config.operator[0].rendered
+    user_data           = data.cloudinit_config.operator[0].rendered
   }
 
   shape = lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex")

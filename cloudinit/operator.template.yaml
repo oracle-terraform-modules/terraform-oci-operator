@@ -2,8 +2,8 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 #cloud-config
-package_upgrade: ${operator_upgrade}
-timezone: ${timezone}
+package_upgrade: ${upgrade_operator}
+timezone: ${operator_timezone}
 write_files:
 # setup script
   - path: "/root/operator/operator.sh"
