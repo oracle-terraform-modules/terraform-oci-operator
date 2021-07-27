@@ -41,7 +41,7 @@ resource "oci_core_instance" "operator" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
-    user_data           = data.template_cloudinit_config.operator[0].rendered
+    user_data           = data.cloudinit_config.operator[0].rendered
   }
 
   shape = lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex")

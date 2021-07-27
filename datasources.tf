@@ -42,7 +42,7 @@ data "oci_core_images" "oracle_images" {
 }
 
 # cloud init for operator
-data "template_cloudinit_config" "operator" {
+data "cloudinit_config" "operator" {
   gzip          = true
   base64_encode = true
 
