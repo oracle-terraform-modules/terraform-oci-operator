@@ -6,8 +6,8 @@
 
 :uri-bastion: https://github.com/oracle-terraform-modules/terraform-oci-bastion
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
-:uri-rel-file-base: link:{uri-repo}/blob/master
-:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
 :uri-docs: {uri-rel-file-base}/docs
 :uri-oci-keys: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm
 :uri-oci-ocids: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#five
@@ -83,8 +83,8 @@ provider "oci" {
 * `operator_instance_principal`
 * `operator_shape`
 * `operator_upgrade`
-* `notification_enabled`
-* `notification_endpoint`
+* `operator_notification_enabled`
+* `operator_notification_endpoint`
 
 . Run Terraform:
 

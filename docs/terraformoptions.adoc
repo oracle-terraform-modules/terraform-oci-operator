@@ -5,8 +5,8 @@
 :sectnums:
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
 
-:uri-rel-file-base: link:{uri-repo}/blob/master
-:uri-rel-tree-base: link:{uri-repo}/tree/master
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
 
 :uri-docs: {uri-rel-file-base}/docs
 :uri-oci-region: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm
@@ -178,7 +178,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |""
 |
 
-|`timezone`
+|`operator_timezone`
 |The preferred timezone for the operator host. {uri-timezones}[List of timezones]
 |e.g. Australia/Sydney
 |The preferred timezone for the operator host. {uri-timezones}[List of timezones]
@@ -195,22 +195,22 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`notification_enabled`
+|`operator_notification_enabled`
 |Whether to enable ONS notification for the operator host.
 |true/false
 |false
 
-|`notification_endpoint`
-|The subscription notification endpoint. Email address to be notified. *Required if notification_enabled = true* ..
+|`operator_notification_endpoint`
+|The subscription notification endpoint. Email address to be notified. *Required if operator_notification_enabled = true* ..
 |
 |Autonomous
 
-|`notification_protocol`
+|`operator_notification_protocol`
 |The notification protocol used.
 |
 |EMAIL
 
-|`notification_topic`
+|`operator_notification_topic`
 |The name of the notification topic.
 |
 |operator
@@ -232,7 +232,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 [source]
 ----
 tags = {
-    department  = "finance"
+    access      = "restricted"
     environment = "dev"
     role        = "operator"
 }

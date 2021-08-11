@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2020 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider identity parameters
@@ -61,16 +61,16 @@ upgrade_operator = false
 
 # notification
 
-notification_enabled = false
+operator_notification_enabled = false
 
-notification_endpoint = ""
+operator_notification_endpoint = ""
 
-notification_protocol = "EMAIL"
+operator_notification_protocol = "EMAIL"
 
-notification_topic = "operator"
+operator_notification_topic = "operator"
 
 tags = {
-    department  = "finance"
+    access      = "restricted"
     environment = "dev"
     role        = "operator"
 }
