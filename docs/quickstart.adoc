@@ -83,7 +83,7 @@ provider "oci" {
 * `operator_instance_principal`
 * `operator_shape`
 * `operator_upgrade`
-* `operator_notification_enabled`
+* `enable_operator_notification`
 * `operator_notification_endpoint`
 
 . Run Terraform:

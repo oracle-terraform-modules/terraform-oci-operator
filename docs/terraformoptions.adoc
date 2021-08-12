@@ -195,13 +195,13 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`operator_notification_enabled`
+|`enable_operator_notification`
 |Whether to enable ONS notification for the operator host.
 |true/false
 |false
 
 |`operator_notification_endpoint`
-|The subscription notification endpoint. Email address to be notified. *Required if operator_notification_enabled = true* ..
+|The subscription notification endpoint. Email address to be notified. *Required if enable_operator_notification = true* ..
 |
 |Autonomous
 

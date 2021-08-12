@@ -8,6 +8,8 @@
 # .tfvars files
 *.tfvars
 
+.terraform.lock.hcl
+
 # provider file for testing - should be manually added
 provider.tf
 

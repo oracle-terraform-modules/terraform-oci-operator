@@ -37,7 +37,7 @@ It creates the following resources:
   - with optional instance_principal access
 * An optional notification via email
 
-This module is meant to be reusabled and to be embedded in your terraform modules. The operator instance can be used for:
+This module is meant to be reusable and to be embedded in your terraform modules. The operator instance can be used for:
 
 1. performing post-provisioning tasks with Terraform or other automation tools
 2. provide administrators access without the need to upload api authentication keys (instance_principal)

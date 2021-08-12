@@ -149,7 +149,7 @@ variable "upgrade_operator" {
 
 # operator notification
 
-variable "operator_notification" {
+variable "enable_operator_notification" {
   description = "Whether to enable ONS notification for the operator host."
   default     = false
   type        = bool

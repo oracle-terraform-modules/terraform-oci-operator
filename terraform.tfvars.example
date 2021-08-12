@@ -61,7 +61,7 @@ upgrade_operator = false
 
 # notification
 
-operator_notification_enabled = false
+enable_operator_notification = false
 
 operator_notification_endpoint = ""
 
