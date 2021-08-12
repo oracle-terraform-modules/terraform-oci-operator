@@ -34,7 +34,7 @@ data "oci_core_vcn" "vcn" {
 data "oci_core_images" "oracle_images" {
   compartment_id           = var.compartment_id
   operating_system         = "Oracle Linux"
-  operating_system_version = var.operating_system_version
+  operating_system_version = var.operator_os_version
   shape                    = lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex")
   sort_by                  = "TIMECREATED"
 

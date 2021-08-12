@@ -89,12 +89,6 @@ variable "create_operator" {
   type        = bool
 }
 
-variable "operating_system_version" {
-  description = "The version of the Oracle Linux to use."
-  default     = "8"
-  type        = string
-}
-
 variable "operator_image_id" {
   description = "Provide a custom image id for the operator host or leave as Oracle."
   default     = "Oracle"
@@ -105,6 +99,12 @@ variable "operator_instance_principal" {
   description = "whether to enable instance_principal on the operator"
   default     = false
   type        = bool
+}
+
+variable "operator_os_version" {
+  description = "The version of the Oracle Linux to use."
+  default     = "8"
+  type        = string
 }
 
 variable "operator_shape" {
@@ -121,6 +121,12 @@ variable "operator_state" {
   type        = string
 }
 
+variable "operator_timezone" {
+  description = "The preferred timezone for the operator host."
+  default     = "Australia/Sydney"
+  type        = string
+}
+
 variable "ssh_public_key" {
   description = "the content of the ssh public key used to access the operator. set this or the ssh_public_key_path"
   default     = ""
@@ -133,11 +139,6 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
-variable "operator_timezone" {
-  description = "The preferred timezone for the operator host."
-  default     = "Australia/Sydney"
-  type        = string
-}
 
 variable "upgrade_operator" {
   description = "Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster."
@@ -148,25 +149,25 @@ variable "upgrade_operator" {
 
 # operator notification
 
-variable "notification_enabled" {
+variable "enable_operator_notification" {
   description = "Whether to enable ONS notification for the operator host."
   default     = false
   type        = bool
 }
 
-variable "notification_endpoint" {
+variable "operator_notification_endpoint" {
   description = "The subscription notification endpoint. Email address to be notified."
   default     = null
   type        = string
 }
 
-variable "notification_protocol" {
+variable "operator_notification_protocol" {
   description = "The notification protocol used."
   default     = "EMAIL"
   type        = string
 }
 
-variable "notification_topic" {
+variable "operator_notification_topic" {
   description = "The name of the notification topic"
   default     = "operator"
   type        = string
@@ -176,7 +177,7 @@ variable "notification_topic" {
 variable "tags" {
   description = "Freeform tags for operator"
   default = {
-    department  = "finance"
+    access      = "restricted"
     environment = "dev"
     role        = "operator"
   }

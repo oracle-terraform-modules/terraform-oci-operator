@@ -16,7 +16,7 @@ locals {
   operator_script_template = base64gzip(
     templatefile("${path.module}/scripts/operator.template.sh",
       {
-        ol = var.operating_system_version
+        ol = var.operator_os_version
       }
     )
   )

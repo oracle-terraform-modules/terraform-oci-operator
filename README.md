@@ -1,20 +1,20 @@
 # Terraform OCI Operator for Oracle Cloud Infrastructure
 
-[changelog]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/CHANGELOG.adoc
-[contributing]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/CONTRIBUTING.adoc
-[contributors]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/CONTRIBUTORS.adoc
-[docs]: https://github.com/oracle-terraform-modules/terraform-oci-operator/tree/master/docs
+[changelog]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/CHANGELOG.adoc
+[contributing]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/CONTRIBUTING.adoc
+[contributors]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/CONTRIBUTORS.adoc
+[docs]: https://github.com/oracle-terraform-modules/terraform-oci-operator/tree/main/docs
 
-[license]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/LICENSE
+[license]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/LICENSE
 [canonical_license]: https://oss.oracle.com/licenses/upl/
 
 [oci]: https://cloud.oracle.com/cloud-infrastructure
 [oci_documentation]: https://docs.cloud.oracle.com/iaas/Content/home.htm
 
 [oracle]: https://www.oracle.com
-[prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/docs/prerequisites.adoc
+[prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/docs/prerequisites.adoc
 
-[quickstart]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/docs/quickstart.adoc
+[quickstart]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/docs/quickstart.adoc
 [repo]: https://github.com/oracle/terraform-oci-operator
 [reuse]: https://github.com/oracle/terraform-oci-operator/examples/db
 [subnets]: https://erikberg.com/notes/networks.html
@@ -22,7 +22,7 @@
 [terraform_cidr_subnet]: http://blog.itsjustcode.net/blog/2017/11/18/terraform-cidrsubnet-deconstructed/
 [terraform_hashircorp_examples]: https://github.com/hashicorp/terraform-guides/tree/master/infrastructure-as-code/terraform-0.12-examples
 [terraform_oci]: https://www.terraform.io/docs/providers/oci/index.html
-[terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/master/docs/terraformoptions.adoc
+[terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-operator/blob/main/docs/terraformoptions.adoc
 [terraform_oci_examples]: https://github.com/terraform-providers/terraform-provider-oci/tree/master/examples
 [terraform_oci_oke]: https://github.com/oracle-terraform-modules/terraform-oci-oke
 
@@ -30,12 +30,14 @@ The [Terraform OCI Operator][repo] for [Oracle Cloud Infrastructure] (OCI)[oci] 
 
 It creates the following resources:
 
-* A security list to allow ssh access from within the VCN only
 * A private subnet
-* A compute instance with optional instance_principal access
+* An NSG that allows access only through a bastion host
+* A compute instance:
+  - accessible through the OCI Bastion Service
+  - with optional instance_principal access
 * An optional notification via email
 
-This module is primarily meant to be reusable and the operator instance is used for:
+This module is meant to be reusable and to be embedded in your terraform modules. The operator instance can be used for:
 
 1. performing post-provisioning tasks with Terraform or other automation tools
 2. provide administrators access without the need to upload api authentication keys (instance_principal)

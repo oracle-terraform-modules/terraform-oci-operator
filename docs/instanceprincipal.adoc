@@ -6,8 +6,8 @@
 
 :uri-repo: https://github.com/oracle/terraform-oci-terraform-oci-operator
 
-:uri-rel-file-terraform-oci-operator: link:{uri-repo}/blob/master
-:uri-rel-tree-terraform-oci-operator: link:{uri-repo}/tree/master
+:uri-rel-file-terraform-oci-operator: link:{uri-repo}/blob/main
+:uri-rel-tree-terraform-oci-operator: link:{uri-repo}/tree/main
 
 :uri-docs: {uri-rel-file-terraform-oci-operator}/docs
 
