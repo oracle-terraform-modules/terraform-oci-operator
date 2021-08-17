@@ -3,24 +3,14 @@
 
 # provider identity parameters
 
-api_fingerprint = ""
-
-api_private_key_path = ""
-
-region = ""
-
 tenancy_id = ""
 
-user_id = ""
-
 # general oci parameters
-
 compartment_id = ""
 
 label_prefix = "dev"
 
 # network parameters
-
 availability_domain = 1
 
 nat_route_id = ""
@@ -33,6 +23,7 @@ nsg_ids = []
 
 vcn_id = ""
 
+# operator host parameters
 operating_system_version = "8"
 
 create_operator = true
@@ -69,7 +60,7 @@ operator_notification_protocol = "EMAIL"
 
 operator_notification_topic = "operator"
 
-tags = {
+operator_tags = {
     access      = "restricted"
     environment = "dev"
     role        = "operator"

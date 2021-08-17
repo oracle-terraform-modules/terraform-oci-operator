@@ -29,28 +29,8 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`api_fingerprint`
-|ssl fingerprint of api public key. *Required when configuring provider*.
-|
-|None
-
-|`api_private_key_path`
-|path to api private key. *Required when configuring provider*.
-|
-|None
-
-|`region`
-|Region where to provision the OKE cluster. {uri-oci-region}[List of regions]. *Required when configuring provider*.
-|
-|None
-
 |`tenancy_id`
 |Tenancy id of the user. *Required when configuring provider*.
-|
-|None
-
-|`user_id`
-|User's id. *Required when configuring provider*.
 |
 |None
 
@@ -163,8 +143,8 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |true/false
 |true
 
-|`operating_system_version`
-|The version of the Oracle Linux to use..
+|`operator_os_version`
+|The version of the Oracle Linux to use.
 |
 |8
 
@@ -225,13 +205,13 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`tags`
+|`operator_tags`
 |Freeform tags for operator.
 |
 |
 [source]
 ----
-tags = {
+operator_tags = {
     access      = "restricted"
     environment = "dev"
     role        = "operator"
