@@ -8,3 +8,7 @@ output "operator_private_ip" {
 output "operator_instance_principal_group_name" {
   value = var.create_operator == true && var.operator_instance_principal == true ? oci_identity_dynamic_group.operator_instance_principal[0].name : null
 }
+
+output "operator_subnet_id" {
+  value = data.oci_core_instance.operator.subnet_id
+}
