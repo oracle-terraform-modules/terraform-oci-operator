@@ -60,12 +60,6 @@ variable "vcn_id" {
 
 # operator host parameters
 
-variable "create_operator" {
-  description = "whether to create the operator"
-  default     = false
-  type        = bool
-}
-
 variable "operator_image_id" {
   description = "Provide a custom image id for the operator host or leave as Oracle."
   default     = "Oracle"

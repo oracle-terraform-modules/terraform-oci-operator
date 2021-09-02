@@ -6,12 +6,10 @@ resource "oci_core_network_security_group" "operator" {
   compartment_id = var.compartment_id
   display_name   = "${var.label_prefix}-operator"
   vcn_id         = var.vcn_id
-
-  count = var.create_operator == true ? 1 : 0
 }
 
 resource "oci_core_network_security_group_security_rule" "operator_egress_anywhere" {
-  network_security_group_id = oci_core_network_security_group.operator[0].id
+  network_security_group_id = oci_core_network_security_group.operator.id
   description               = "allow operator to egress to anywhere"
   destination               = local.anywhere
   destination_type          = "CIDR_BLOCK"
@@ -22,12 +20,10 @@ resource "oci_core_network_security_group_security_rule" "operator_egress_anywhe
   lifecycle {
     ignore_changes = [direction, protocol, source, source_type, tcp_options]
   }
-
-  count = var.create_operator == true ? 1 : 0
 }
 
 resource "oci_core_network_security_group_security_rule" "operator_egress_osn" {
-  network_security_group_id = oci_core_network_security_group.operator[0].id
+  network_security_group_id = oci_core_network_security_group.operator.id
   description               = "allow operator to egress to osn"
   destination               = local.osn
   destination_type          = "SERVICE_CIDR_BLOCK"
@@ -38,12 +34,10 @@ resource "oci_core_network_security_group_security_rule" "operator_egress_osn" {
   lifecycle {
     ignore_changes = [direction, protocol, source, source_type, tcp_options]
   }
-
-  count = var.create_operator == true ? 1 : 0
 }
 
 resource "oci_core_network_security_group_security_rule" "operator_ingress" {
-  network_security_group_id = oci_core_network_security_group.operator[0].id
+  network_security_group_id = oci_core_network_security_group.operator.id
   description               = "allow ssh access to operator from within vcn"
   direction                 = "INGRESS"
   protocol                  = local.tcp_protocol
@@ -61,6 +55,23 @@ resource "oci_core_network_security_group_security_rule" "operator_ingress" {
   lifecycle {
     ignore_changes = [direction, protocol, source, source_type, tcp_options]
   }
+}
 
-  count = var.create_operator == true ? 1 : 0
+resource "oci_core_security_list" "operator" {
+  compartment_id = var.compartment_id
+  display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
+  freeform_tags  = var.tags
+
+  # egress rule to the same subnet to allow users to use OCI Bastion service to connect to the operator
+  egress_security_rules {
+    protocol    = local.tcp_protocol
+    destination = local.operator_subnet
+
+    tcp_options {
+      min = local.ssh_port
+      max = local.ssh_port
+    }
+  }
+
+  vcn_id = var.vcn_id
 }
