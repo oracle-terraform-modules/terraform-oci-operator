@@ -6,7 +6,7 @@ resource "oci_core_subnet" "operator" {
   compartment_id             = var.compartment_id
   display_name               = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
   dns_label                  = "operator"
-  freeform_tags              = var.tags
+  freeform_tags              = var.freeform_tags
   prohibit_public_ip_on_vnic = true
   route_table_id             = var.nat_route_id
   security_list_ids          = [oci_core_security_list.operator.id]

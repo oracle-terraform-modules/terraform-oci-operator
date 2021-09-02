@@ -17,7 +17,8 @@ resource "oci_core_instance" "operator" {
   }
   
   compartment_id = var.compartment_id
-  freeform_tags  = var.tags
+
+  freeform_tags  = var.freeform_tags
 
   create_vnic_details {
     assign_public_ip = false
@@ -40,7 +41,7 @@ resource "oci_core_instance" "operator" {
   }
 
   metadata = {
-    ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
+    ssh_authorized_keys = (var.ssh_public_key != "") ? var.ssh_public_key : (var.ssh_public_key_path != "none") ? file(var.ssh_public_key_path) : ""
     user_data           = data.cloudinit_config.operator.rendered
   }
 

@@ -60,7 +60,7 @@ resource "oci_core_network_security_group_security_rule" "operator_ingress" {
 resource "oci_core_security_list" "operator" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
-  freeform_tags  = var.tags
+  freeform_tags  = var.freeform_tags
 
   # egress rule to the same subnet to allow users to use OCI Bastion service to connect to the operator
   egress_security_rules {

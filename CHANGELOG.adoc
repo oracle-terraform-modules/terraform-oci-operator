@@ -11,6 +11,7 @@ The format is based on {uri-changelog}[Keep a Changelog].
 
 == New features
 * Changed default tag values
+* Renamed operator_tags --> freeform_tags
 * Renamed notification variables
 * Renamed variable operating_system_version --> operator_os_version
 * Renamed variable operator_upgrade --> upgrade_operator
