@@ -9,5 +9,6 @@ resource "oci_core_subnet" "operator" {
   freeform_tags              = var.tags
   prohibit_public_ip_on_vnic = true
   route_table_id             = var.nat_route_id
+  security_list_ids          = [oci_core_security_list.operator.id]
   vcn_id                     = var.vcn_id
 }
