@@ -22,7 +22,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 == Provider and Identity
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
@@ -38,7 +38,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 == General OCI
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
