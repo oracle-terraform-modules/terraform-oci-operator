@@ -111,15 +111,11 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |`freeform_tags`
 |Freeform tags for operator.
 |
-|
-[source]
-----
-freeform_tags = {
+|`freeform_tags = {
     access      = "restricted"
     environment = "dev"
     role        = "operator"
-}
-----
+}`
 
 |`operator_image_id`
 |Provide a custom image id for the operator host or leave as Oracle.
@@ -153,7 +149,7 @@ freeform_tags = {
 
 |`operator_state`
 |The target state for the instance. Could be set to RUNNING or STOPPED. (Updatable)
-|RUNNING|STOPPED
+|RUNNING/STOPPED
 |RUNNING
 
 |`operator_timezone`
