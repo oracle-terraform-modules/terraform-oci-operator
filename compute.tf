@@ -17,7 +17,6 @@ resource "oci_core_instance" "operator" {
   }
   
   compartment_id = var.compartment_id
-
   freeform_tags  = var.freeform_tags
 
   create_vnic_details {

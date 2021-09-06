@@ -43,11 +43,11 @@ When you enable this feature, by default, the operator host has privileges to ma
 
 You can also turn on and off the feature at any time without impact on the operator host.
 
-To enable, set enable_instance_principal to true:
+To enable, set operator_instance_principal to true:
 
 [source,hcl]
 ----
-enable_instance_principal = true
+operator_instance_principal = true
 ----
 
 and verify:
@@ -60,11 +60,11 @@ You should be able to see a list of VCNs created in the compartment.
 
 ==== Disabling instance_principal on the operator host
 
-To disable, set enable_instance_principal to false:
+To disable, set operator_instance_principal to false:
 
 [source, hcl]
 ----
-enable_instance_principal = false
+operator_instance_principal = false
 ----
 
 . Run terraform apply again:

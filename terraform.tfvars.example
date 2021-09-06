@@ -30,6 +30,8 @@ freeform_tags = {
     role        = "operator"
 }
 
+operating_system_version = "8"
+
 operator_image_id = "Oracle"
 
 operator_instance_principal = true

@@ -203,3 +203,4 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |The name of the notification topic.
 |
 |operator
+|===
