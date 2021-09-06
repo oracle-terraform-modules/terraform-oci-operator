@@ -27,5 +27,6 @@ locals {
 
   tcp_protocol = 6
 
-  vcn_cidr = data.oci_core_vcn.vcn.cidr_block
+  # we expect the operator to be in the first cidr block in the list of cidr blocks
+  vcn_cidr = element(data.oci_core_vcn.vcn.cidr_blocks, 0)
 }

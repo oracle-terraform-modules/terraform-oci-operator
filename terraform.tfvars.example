@@ -26,8 +26,6 @@ vcn_id = ""
 # operator host parameters
 operating_system_version = "8"
 
-create_operator = true
-
 operator_image_id = "Oracle"
 
 operator_instance_principal = true
@@ -60,7 +58,7 @@ operator_notification_protocol = "EMAIL"
 
 operator_notification_topic = "operator"
 
-operator_tags = {
+freeform_tags = {
     access      = "restricted"
     environment = "dev"
     role        = "operator"

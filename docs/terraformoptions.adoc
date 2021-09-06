@@ -108,11 +108,6 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`create_operator`
-|whether to create the operator
-| true/false
-|true
-
 |`operator_image_id`
 |Provide a custom image id for the operator host or leave as Oracle.
 |imageid/Oracle
@@ -205,13 +200,13 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Values
 |Default
 
-|`operator_tags`
+|`freeform_tags`
 |Freeform tags for operator.
 |
 |
 [source]
 ----
-operator_tags = {
+freeform_tags = {
     access      = "restricted"
     environment = "dev"
     role        = "operator"
