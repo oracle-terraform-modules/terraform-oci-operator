@@ -24,11 +24,19 @@ nsg_ids = []
 vcn_id = ""
 
 # operator host parameters
+freeform_tags = {
+    access      = "restricted"
+    environment = "dev"
+    role        = "operator"
+}
+
 operating_system_version = "8"
 
 operator_image_id = "Oracle"
 
 operator_instance_principal = true
+
+operating_os_version = "8"
 
 operator_shape = {
   # shape = "VM.Standard.E2.2"
@@ -57,9 +65,3 @@ operator_notification_endpoint = ""
 operator_notification_protocol = "EMAIL"
 
 operator_notification_topic = "operator"
-
-freeform_tags = {
-    access      = "restricted"
-    environment = "dev"
-    role        = "operator"
-}

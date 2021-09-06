@@ -11,6 +11,7 @@ locals {
 
   operator_image_id = var.operator_image_id == "Oracle" ? data.oci_core_images.oracle_images[0].images.0.id : var.operator_image_id
 
+  operator_subnet = cidrsubnet(local.vcn_cidr, var.newbits, var.netnum) 
   operator_template = "${path.module}/cloudinit/operator.template.yaml"
 
   operator_script_template = base64gzip(

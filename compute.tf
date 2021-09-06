@@ -40,7 +40,7 @@ resource "oci_core_instance" "operator" {
   }
 
   metadata = {
-    ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
+    ssh_authorized_keys = (var.ssh_public_key != "") ? var.ssh_public_key : (var.ssh_public_key_path != "none") ? file(var.ssh_public_key_path) : ""
     user_data           = data.cloudinit_config.operator.rendered
   }
 

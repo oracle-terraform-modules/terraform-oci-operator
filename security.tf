@@ -56,3 +56,22 @@ resource "oci_core_network_security_group_security_rule" "operator_ingress" {
     ignore_changes = [direction, protocol, source, source_type, tcp_options]
   }
 }
+
+resource "oci_core_security_list" "operator" {
+  compartment_id = var.compartment_id
+  display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
+  freeform_tags  = var.freeform_tags
+
+  # egress rule to the same subnet to allow users to use OCI Bastion service to connect to the operator
+  egress_security_rules {
+    protocol    = local.tcp_protocol
+    destination = local.operator_subnet
+
+    tcp_options {
+      min = local.ssh_port
+      max = local.ssh_port
+    }
+  }
+
+  vcn_id = var.vcn_id
+}

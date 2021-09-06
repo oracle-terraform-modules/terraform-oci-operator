@@ -68,5 +68,4 @@ data "oci_core_vnic" "operator_vnic" {
 data "oci_core_instance" "operator" {
   depends_on  = [oci_core_instance.operator]
   instance_id = oci_core_instance.operator.id
-
 }
