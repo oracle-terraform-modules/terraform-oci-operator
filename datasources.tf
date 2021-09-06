@@ -30,7 +30,7 @@ data "oci_core_images" "oracle_images" {
   shape                    = lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex")
   sort_by                  = "TIMECREATED"
 
-  count = (var.create_operator == true && var.operator_image_id == "Oracle") ? 1 : 0
+  count = var.operator_image_id == "Oracle" ? 1 : 0
 }
 
 # cloud init for operator
@@ -49,7 +49,6 @@ data "cloudinit_config" "operator" {
       }
     )
   }
-  count = var.create_operator == true ? 1 : 0
 }
 
 # Gets a list of VNIC attachments on the operator instance
@@ -57,22 +56,16 @@ data "oci_core_vnic_attachments" "operator_vnics_attachments" {
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_id
   depends_on          = [oci_core_instance.operator]
-  instance_id         = oci_core_instance.operator[0].id
-
-  count = var.create_operator == true ? 1 : 0
+  instance_id         = oci_core_instance.operator.id
 }
 
 # Gets the OCID of the first (default) VNIC on the operator instance
 data "oci_core_vnic" "operator_vnic" {
   depends_on = [oci_core_instance.operator]
-  vnic_id    = lookup(data.oci_core_vnic_attachments.operator_vnics_attachments[0].vnic_attachments[0], "vnic_id")
-
-  count = var.create_operator == true ? 1 : 0
+  vnic_id    = lookup(data.oci_core_vnic_attachments.operator_vnics_attachments.vnic_attachments[0], "vnic_id")
 }
 
 data "oci_core_instance" "operator" {
   depends_on  = [oci_core_instance.operator]
-  instance_id = oci_core_instance.operator[0].id
-
-  count = var.create_operator == true ? 1 : 0
+  instance_id = oci_core_instance.operator.id
 }

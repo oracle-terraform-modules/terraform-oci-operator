@@ -60,10 +60,14 @@ variable "vcn_id" {
 
 # operator host parameters
 
-variable "create_operator" {
-  description = "whether to create the operator"
-  default     = false
-  type        = bool
+variable "freeform_tags" {
+  description = "Freeform tags for operator"
+  default = {
+    access      = "restricted"
+    environment = "dev"
+    role        = "operator"
+  }
+  type = map(any)
 }
 
 variable "operator_image_id" {
@@ -146,15 +150,4 @@ variable "operator_notification_topic" {
   description = "The name of the notification topic"
   default     = "operator"
   type        = string
-}
-
-# tagging
-variable "tags" {
-  description = "Freeform tags for operator"
-  default = {
-    access      = "restricted"
-    environment = "dev"
-    role        = "operator"
-  }
-  type = map(any)
 }

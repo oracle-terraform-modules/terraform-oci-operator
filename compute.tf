@@ -17,14 +17,15 @@ resource "oci_core_instance" "operator" {
   }
   
   compartment_id = var.compartment_id
-  freeform_tags  = var.tags
+
+  freeform_tags  = var.freeform_tags
 
   create_vnic_details {
     assign_public_ip = false
     display_name     = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
     hostname_label   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
-    nsg_ids          = concat(var.nsg_ids, [oci_core_network_security_group.operator[0].id])
-    subnet_id        = oci_core_subnet.operator[0].id
+    nsg_ids          = concat(var.nsg_ids, [oci_core_network_security_group.operator.id])
+    subnet_id        = oci_core_subnet.operator.id
   }
 
   display_name = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
@@ -40,8 +41,8 @@ resource "oci_core_instance" "operator" {
   }
 
   metadata = {
-    ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
-    user_data           = data.cloudinit_config.operator[0].rendered
+    ssh_authorized_keys = (var.ssh_public_key != "") ? var.ssh_public_key : (var.ssh_public_key_path != "none") ? file(var.ssh_public_key_path) : ""
+    user_data           = data.cloudinit_config.operator.rendered
   }
 
   shape = lookup(var.operator_shape, "shape", "VM.Standard.E4.Flex")
@@ -64,6 +65,4 @@ resource "oci_core_instance" "operator" {
   timeouts {
     create = "60m"
   }
-
-  count = var.create_operator == true ? 1 : 0
 }

@@ -22,7 +22,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 == Provider and Identity
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
@@ -38,7 +38,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 == General OCI
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
@@ -53,14 +53,14 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |`label_prefix`
 |a string to be prepended to the name of resources. *Required*.
 |
-|None
+|none
 
 
 |===
 
 == Network Parameters
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
@@ -68,12 +68,12 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |Default
 
 |`availability_domain`
-|the AD to place the operator host
+|The AD to place the operator host
 | 1
 | 1
 
 |`nat_route_id`
-|the route id to the NAT gateway of the VCN 
+|The route id to the NAT gateway of the VCN 
 |
 |
 
@@ -101,22 +101,36 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 == Operator Host Parameters
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
 |Values
 |Default
 
-|`create_operator`
-|whether to create the operator
-| true/false
-|true
+|`freeform_tags`
+|Freeform tags for operator.
+|
+|`freeform_tags = {
+    access      = "restricted"
+    environment = "dev"
+    role        = "operator"
+}`
 
 |`operator_image_id`
 |Provide a custom image id for the operator host or leave as Oracle.
 |imageid/Oracle
 |Oracle
+
+|`operator_instance_principal`
+|Whether to enable instance_principal on the operator.
+|true/false
+|false
+
+|`operator_os_version`
+|The version of the Oracle Linux to use.
+|
+|8
 
 |`operator_shape`
 |The shape of operator instance. This is now specified as a map and supports E3.Flex. If a non-Flex shape is specified, then the other parameters are ignored.
@@ -135,18 +149,13 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 
 |`operator_state`
 |The target state for the instance. Could be set to RUNNING or STOPPED. (Updatable)
-|RUNNING|STOPPED
+|RUNNING/STOPPED
 |RUNNING
 
-|`operator_upgrade`
-|Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster.
-|true/false
-|true
-
-|`operator_os_version`
-|The version of the Oracle Linux to use.
-|
-|8
+|`operator_timezone`
+|The preferred timezone for the operator host. {uri-timezones}[List of timezones]
+|e.g. Australia/Sydney
+|The preferred timezone for the operator host. {uri-timezones}[List of timezones]
 
 |`ssh_public_key`
 |the content of the ssh public key used to access the operator. set this or the ssh_public_key_path
@@ -158,17 +167,17 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |""
 |
 
-|`operator_timezone`
-|The preferred timezone for the operator host. {uri-timezones}[List of timezones]
-|e.g. Australia/Sydney
-|The preferred timezone for the operator host. {uri-timezones}[List of timezones]
+|`upgrade_operator`
+|Whether to upgrade the operator host packages after provisioning. It's useful to set this to false during development/testing so the operator is provisioned faster.
+|true/false
+|true
 
 |===
 
 
 == Notification Parameters
 
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+[stripes=odd,cols="2,5,1,1", options=header,width="100%"] 
 |===
 |Parameter
 |Description
@@ -194,26 +203,3 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |The name of the notification topic.
 |
 |operator
-|===
-
-== Tagging Parameters
-
-[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
-|===
-|Parameter
-|Description
-|Values
-|Default
-
-|`operator_tags`
-|Freeform tags for operator.
-|
-|
-[source]
-----
-operator_tags = {
-    access      = "restricted"
-    environment = "dev"
-    role        = "operator"
-}
-----

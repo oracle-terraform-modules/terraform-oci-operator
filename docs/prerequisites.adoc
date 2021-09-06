@@ -97,7 +97,7 @@ Open a terminal and test:
 [source,bash]
 ----
 terraform -v
-Terraform v0.12.24
+Terraform v1.0.3
 ----
 
 === Generate and upload your OCI API keys
