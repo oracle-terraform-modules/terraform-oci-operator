@@ -5,7 +5,7 @@ output "operator_private_ip" {
   value = join(",", data.oci_core_vnic.operator_vnic.*.private_ip_address)
 }
 
-output "enable_operator_instance_principal_group_name" {
+output "operator_instance_principal_group_name" {
   value = var.enable_operator_instance_principal == true ? oci_identity_dynamic_group.enable_operator_instance_principal[0].name : null
 }
 
