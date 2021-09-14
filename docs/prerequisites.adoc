@@ -1,8 +1,9 @@
 = Pre-requisites
-
 :idprefix:
 :idseparator: -
 :sectlinks:
+:sectnums:
+:toc:
 
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
 

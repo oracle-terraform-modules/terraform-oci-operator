@@ -16,6 +16,7 @@ The format is based on {uri-changelog}[Keep a Changelog].
 * Renamed variable operating_system_version --> operator_os_version
 * Renamed variable operator_upgrade --> upgrade_operator
 * Renamed variable timezone --> operator_timezone
+* Renamed variable operator_instance_principal --> enable_operator_instance_principal
 * Added support for Bastion service
 * AD lookup mechanism reimplemented to remove dependency on deprecated template_file data source
 * Replaced deprecated template_file data source with templatefile function

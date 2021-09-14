@@ -1,8 +1,9 @@
 = Quickstart
-
 :idprefix:
 :idseparator: -
 :sectlinks:
+:sectnums:
+:toc:
 
 :uri-bastion: https://github.com/oracle-terraform-modules/terraform-oci-bastion
 :uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
@@ -89,7 +90,7 @@ provider "oci" {
 
 . Optional parameters to override:
 
-* `operator_instance_principal`
+* `enable_operator_instance_principal`
 * `operator_shape`
 * `operator_upgrade`
 * `enable_operator_notification`
