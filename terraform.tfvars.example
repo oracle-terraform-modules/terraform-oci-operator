@@ -34,7 +34,7 @@ operating_system_version = "8"
 
 operator_image_id = "Oracle"
 
-operator_instance_principal = true
+enable_operator_instance_principal = true
 
 operating_os_version = "8"
 

@@ -3,8 +3,9 @@
 :idseparator: -
 :sectlinks:
 :sectnums:
-:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
+:toc:
 
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-operator
 :uri-rel-file-base: link:{uri-repo}/blob/main
 :uri-rel-tree-base: link:{uri-repo}/tree/main
 
@@ -122,7 +123,7 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |imageid/Oracle
 |Oracle
 
-|`operator_instance_principal`
+|`enable_operator_instance_principal`
 |Whether to enable instance_principal on the operator.
 |true/false
 |false

@@ -59,6 +59,11 @@ variable "vcn_id" {
 }
 
 # operator host parameters
+variable "enable_operator_instance_principal" {
+  description = "whether to enable instance_principal on the operator"
+  default     = false
+  type        = bool
+}
 
 variable "freeform_tags" {
   description = "Freeform tags for operator"
@@ -74,12 +79,6 @@ variable "operator_image_id" {
   description = "Provide a custom image id for the operator host or leave as Oracle."
   default     = "Oracle"
   type        = string
-}
-
-variable "operator_instance_principal" {
-  description = "whether to enable instance_principal on the operator"
-  default     = false
-  type        = bool
 }
 
 variable "operator_os_version" {
