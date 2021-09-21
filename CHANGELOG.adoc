@@ -10,7 +10,7 @@ The format is based on {uri-changelog}[Keep a Changelog].
 = v3.0.0 (September 21,2021)
 
 == New features
-* Added support for ARM Flex Shape (#30)
+* Added support for Ampere A1 Flex shape Shape (#30)
 * Added support for Bastion service (#45)
 * Set minimum Terraform version to 1.0.0
 * New variable (`operator_state`) to specify state of operator host
