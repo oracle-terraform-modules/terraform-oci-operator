@@ -7,34 +7,31 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
-= Unreleased
+= v3.0.0 (September 21,2021)
 
 == New features
-* Changed default tag values
-* Renamed operator_tags --> freeform_tags
-* Renamed notification variables
-* Renamed variable operating_system_version --> operator_os_version
-* Renamed variable operator_upgrade --> upgrade_operator
-* Renamed variable timezone --> operator_timezone
-* Renamed variable operator_instance_principal --> enable_operator_instance_principal
-* Added support for Bastion service
-* AD lookup mechanism reimplemented to remove dependency on deprecated template_file data source
-* Replaced deprecated template_file data source with templatefile function
+* Added support for ARM Flex Shape (#30)
+* Added support for Bastion service (#45)
 * Set minimum Terraform version to 1.0.0
 * New variable (`operator_state`) to specify state of operator host
-* Removed security list and using NSG instead
+* Added NSG to control network access
 
 == Changes
+* Replaced deprecated template_file data source with templatefile function (#38)
+* Renamed control variables (#41)
+** Renamed operator_tags --> freeform_tags
+** Renamed notification variables
+** Renamed variable operating_system_version --> operator_os_version
+** Renamed variable operator_upgrade --> upgrade_operator
+** Renamed variable timezone --> operator_timezone
+** Renamed variable operator_instance_principal --> enable_operator_instance_principal
+* Changed default tag values
 * Set default shape to E4.Flex
+* AD lookup mechanism reimplemented to remove dependency on deprecated template_file data source
 
 == Deletion
-* * Deleted var.operator_enabled. This can now be controlled using higher level modules.
-
-== Deprecation notice
-
-The following variables will be renamed at the next major release of this module:
-
-* var.operator_enabled --> var.create_operator
+* Deleted var.operator_enabled. This can now be controlled using higher level modules
+* Removed provider identity variables and home provider from the operator module (#43)
 
 == v2.1.0 (March 22,2021)
 * Upgrade default version of operator host to Oracle Linux 8 (#26)
