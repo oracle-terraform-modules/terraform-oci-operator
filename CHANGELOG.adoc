@@ -7,16 +7,19 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
-= v3.0.0 (September 21,2021)
+== v3.0.1 (December 22,2021)
+* Disabled OSMS (#55)
 
-== New features
+== v3.0.0 (September 21,2021)
+
+=== New features
 * Added support for Ampere A1 Flex shape Shape (#30)
 * Added support for Bastion service (#45)
 * Set minimum Terraform version to 1.0.0
 * New variable (`operator_state`) to specify state of operator host
 * Added NSG to control network access
 
-== Changes
+=== Changes
 * Replaced deprecated template_file data source with templatefile function (#38)
 * Renamed control variables (#41)
 ** Renamed operator_tags --> freeform_tags
@@ -29,7 +32,7 @@ The format is based on {uri-changelog}[Keep a Changelog].
 * Set default shape to E4.Flex
 * AD lookup mechanism reimplemented to remove dependency on deprecated template_file data source
 
-== Deletion
+=== Deletion
 * Deleted var.operator_enabled. This can now be controlled using higher level modules
 * Removed provider identity variables and home provider from the operator module (#43)
 
@@ -59,7 +62,6 @@ The format is based on {uri-changelog}[Keep a Changelog].
 
 === Changes
 * Use root_compartment_id instead of tenancy_id in dynamic group
-
 
 == v1.0.10 (August 5,2020)
 
