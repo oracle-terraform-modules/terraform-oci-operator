@@ -38,6 +38,7 @@ resource "oci_core_instance" "operator" {
     network_type     = "PARAVIRTUALIZED"
   }
 
+  is_pv_encryption_in_transit_enabled = var.enable_pv_encryption_in_transit
   # prevent the operator from destroying and recreating itself if the image ocid changes
   lifecycle {
     ignore_changes = [source_details[0].source_id]

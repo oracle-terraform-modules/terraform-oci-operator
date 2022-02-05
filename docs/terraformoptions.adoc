@@ -123,6 +123,11 @@ Ensure you review the {uri-terraform-dependencies}[dependencies].
 |imageid/Oracle
 |Oracle
 
+|`is_pv_encryption_in_transit_enabled`
+|Whether to enable in-transit encryption for the data volume's paravirtualized attachment
+|true/false
+|false
+
 |`boot_volume_encryption_key`
 |The OCID of the OCI KMS key to assign as the master encryption key for the boot volume.
 |""

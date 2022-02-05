@@ -156,3 +156,9 @@ variable "boot_volume_encryption_key" {
   default     = ""
   type        = string
 }
+
+variable "enable_pv_encryption_in_transit" {
+  description = "Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false"
+  default = false
+  type = bool
+}
