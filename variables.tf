@@ -150,3 +150,9 @@ variable "operator_notification_topic" {
   default     = "operator"
   type        = string
 }
+
+variable "boot_volume_encryption_key" {
+  description = "The OCID of the OCI KMS key to assign as the master encryption key for the boot volume."
+  default     = ""
+  type        = string
+}
