@@ -126,6 +126,18 @@ variable "upgrade_operator" {
   type        = bool
 }
 
+variable "enable_pv_encryption_in_transit" {
+  description = "Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false"
+  default = false
+  type = bool
+}
+
+variable "boot_volume_encryption_key" {
+  description = "The OCID of the OCI KMS key to assign as the master encryption key for the boot volume."
+  default     = ""
+  type        = string
+}
+
 # operator notification
 variable "enable_operator_notification" {
   description = "Whether to enable ONS notification for the operator host."
@@ -151,14 +163,3 @@ variable "operator_notification_topic" {
   type        = string
 }
 
-variable "boot_volume_encryption_key" {
-  description = "The OCID of the OCI KMS key to assign as the master encryption key for the boot volume."
-  default     = ""
-  type        = string
-}
-
-variable "enable_pv_encryption_in_transit" {
-  description = "Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false"
-  default = false
-  type = bool
-}
