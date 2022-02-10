@@ -38,7 +38,8 @@ resource "oci_core_instance" "operator" {
     network_type     = "PARAVIRTUALIZED"
   }
 
-  # prevent the operator from destroying and recreating itself if the image ocid changes 
+  is_pv_encryption_in_transit_enabled = var.enable_pv_encryption_in_transit
+  # prevent the operator from destroying and recreating itself if the image ocid changes
   lifecycle {
     ignore_changes = [source_details[0].source_id]
   }
@@ -61,6 +62,7 @@ resource "oci_core_instance" "operator" {
   source_details {
     source_type = "image"
     source_id   = local.operator_image_id
+    kms_key_id  = var.boot_volume_encryption_key
   }
 
   state = var.operator_state
