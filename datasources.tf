@@ -10,9 +10,8 @@ data "oci_core_services" "all_oci_services" {
 }
 
 data "oci_identity_availability_domain" "ad" {
-  compartment_id = var.tenancy_id
-
-  ad_number = var.availability_domain
+  compartment_id = var.compartment_id
+  ad_number      = var.availability_domain
 }
 
 data "oci_identity_tenancy" "tenancy" {
