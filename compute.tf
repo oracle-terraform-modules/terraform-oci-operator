@@ -39,10 +39,6 @@ resource "oci_core_instance" "operator" {
   }
 
   is_pv_encryption_in_transit_enabled = var.enable_pv_encryption_in_transit
-  # prevent the operator from destroying and recreating itself if the image ocid changes
-  lifecycle {
-    ignore_changes = [source_details[0].source_id]
-  }
 
   metadata = {
     ssh_authorized_keys = (var.ssh_public_key != "") ? var.ssh_public_key : (var.ssh_public_key_path != "none") ? file(var.ssh_public_key_path) : ""
@@ -66,6 +62,11 @@ resource "oci_core_instance" "operator" {
   }
 
   state = var.operator_state
+
+  # prevent the operator from destroying and recreating itself if the image ocid/tagging/user data changes
+  lifecycle {
+    ignore_changes = [freeform_tags, metadata["user_data"], source_details[0].source_id]
+  }
 
   timeouts {
     create = "60m"
