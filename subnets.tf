@@ -11,4 +11,8 @@ resource "oci_core_subnet" "operator" {
   route_table_id             = var.nat_route_id
   security_list_ids          = [oci_core_security_list.operator.id]
   vcn_id                     = var.vcn_id
+
+  lifecycle {
+    ignore_changes = [freeform_tags]
+  }
 }

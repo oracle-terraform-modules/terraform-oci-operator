@@ -61,6 +61,7 @@ resource "oci_core_security_list" "operator" {
   compartment_id = var.compartment_id
   display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
   freeform_tags  = var.freeform_tags
+  vcn_id         = var.vcn_id
 
   # egress rule to the same subnet to allow users to use OCI Bastion service to connect to the operator
   egress_security_rules {
@@ -73,5 +74,7 @@ resource "oci_core_security_list" "operator" {
     }
   }
 
-  vcn_id = var.vcn_id
+  lifecycle {
+    ignore_changes = [freeform_tags]
+  }
 }

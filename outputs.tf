@@ -10,7 +10,7 @@ output "operator_instance_principal_group_name" {
 }
 
 output "operator_subnet_id" {
-  value = data.oci_core_instance.operator.subnet_id
+  value = oci_core_subnet.operator.id
 }
 
 output "operator_nsg_id" {
