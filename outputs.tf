@@ -1,4 +1,4 @@
-# Copyright 2017, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2022, Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 output "operator_private_ip" {
@@ -6,7 +6,7 @@ output "operator_private_ip" {
 }
 
 output "operator_instance_principal_group_name" {
-  value = var.enable_operator_instance_principal == true ? oci_identity_dynamic_group.enable_operator_instance_principal[0].name : null
+  value = var.enable_operator_instance_principal == true ? oci_identity_dynamic_group.operator_group[0].name : null
 }
 
 output "operator_subnet_id" {

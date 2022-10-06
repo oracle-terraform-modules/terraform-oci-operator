@@ -1,4 +1,4 @@
-# Copyright 2017, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2022, Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 # Protocols are specified as protocol numbers.
@@ -8,6 +8,8 @@ locals {
   all_protocols = "all"
 
   anywhere = "0.0.0.0/0"
+
+  dynamic_group_prefix = (var.label_prefix == "none") ? "" : "${var.label_prefix}"
 
   operator_image_id = var.operator_image_id == "Oracle" ? data.oci_core_images.oracle_images[0].images.0.id : var.operator_image_id
 
