@@ -65,7 +65,7 @@ resource "oci_core_instance" "operator" {
 
   # prevent the operator from destroying and recreating itself if the image ocid/tagging/user data changes
   lifecycle {
-    ignore_changes = [freeform_tags, metadata["user_data"], source_details[0].source_id]
+    ignore_changes = [availability_domain, defined_tags, freeform_tags, metadata, source_details[0].source_id]
   }
 
   timeouts {
