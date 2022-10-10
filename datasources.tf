@@ -52,7 +52,6 @@ data "cloudinit_config" "operator" {
 
 # Gets a list of VNIC attachments on the operator instance
 data "oci_core_vnic_attachments" "operator_vnics_attachments" {
-  availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_id
   depends_on          = [oci_core_instance.operator]
   instance_id         = oci_core_instance.operator.id
