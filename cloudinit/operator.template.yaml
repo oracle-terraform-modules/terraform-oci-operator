@@ -9,7 +9,6 @@ packages:
 
 bootcmd:
   - [dnf, config-manager, --enable, ol8_developer]
-  - [systemctl, disable, --now, firewalld]
   - [uptrack-upgrade, -y]
 
 runcmd:
