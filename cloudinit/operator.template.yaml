@@ -4,15 +4,21 @@
 #cloud-config
 package_upgrade: ${upgrade_operator}
 timezone: ${operator_timezone}
-write_files:
-# setup script
-  - path: "/root/operator/operator.sh"
-    permissions: "0700"
-    encoding: "gzip+base64"
-    content: |
-      ${operator_sh_content}
+packages:
+  - python3-oci-cli
+
+bootcmd:
+  - [dnf, config-manager, --enable, ol8_developer]
+  - [uptrack-upgrade, -y]
+
 runcmd:
- - echo "Configuring operator..."
- - bash /root/operator/operator.sh
+ - echo "Setting instance_principal..."
  - echo "export OCI_CLI_AUTH=instance_principal" >>  /home/opc/.bashrc
  - touch /home/opc/operator.finish
+
+final_message: |
+  cloud-init has finished
+  version: $version
+  timestamp: $timestamp
+  datasource: $datasource
+  uptime: $uptime

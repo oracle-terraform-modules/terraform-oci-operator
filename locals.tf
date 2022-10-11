@@ -16,14 +16,6 @@ locals {
   operator_subnet = cidrsubnet(local.vcn_cidr, var.newbits, var.netnum) 
   operator_template = "${path.module}/cloudinit/operator.template.yaml"
 
-  operator_script_template = base64gzip(
-    templatefile("${path.module}/scripts/operator.template.sh",
-      {
-        ol = var.operator_os_version
-      }
-    )
-  )
-
   osn = lookup(data.oci_core_services.all_oci_services.services[0], "cidr_block")
 
   ssh_port = 22
