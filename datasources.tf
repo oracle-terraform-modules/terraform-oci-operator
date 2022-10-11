@@ -42,7 +42,6 @@ data "cloudinit_config" "operator" {
     content_type = "text/cloud-config"
     content = templatefile(
       local.operator_template, {
-        operator_sh_content = local.operator_script_template,
         operator_timezone   = var.operator_timezone,
         upgrade_operator    = var.upgrade_operator,
       }
