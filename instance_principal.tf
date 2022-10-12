@@ -41,3 +41,13 @@ resource "oci_identity_policy" "operator_group_policy" {
 
   count = var.enable_operator_instance_principal == true ? 1 : 0
 }
+
+moved {
+  from = oci_identity_policy.enable_operator_instance_principal
+  to = oci_identity_policy.operator_group_policy
+}
+
+moved {
+  from = oci_identity_dynamic_group.enable_operator_instance_principal
+  to = oci_identity_dynamic_group.operator_group
+}
