@@ -4,17 +4,17 @@
 #cloud-config
 package_upgrade: ${upgrade_operator}
 timezone: ${operator_timezone}
-packages:
-  - python3-oci-cli
-
 bootcmd:
-  - [dnf, config-manager, --enable, ol8_developer]
-  - [uptrack-upgrade, -y]
+  - [dnf, config-manager, --disable, ol8_MySQL80, --disable, ol8_MySQL80_connectors_community, --disable, ol8_MySQL80_tools_community, --disable, ol8_addons, --disable, ol8_ksplice]
 
 runcmd:
- - echo "Setting instance_principal..."
- - echo "export OCI_CLI_AUTH=instance_principal" >>  /home/opc/.bashrc
- - touch /home/opc/operator.finish
+  - dnf install -y oracle-olcne-release-el8
+  - dnf config-manager --enable ol8_olcne15
+  - dnf config-manager --disable ol8_olcne14
+  - dnf install -y git helm jq kubectl python3-oci-cli
+  - echo "Setting instance_principal..."
+  - echo "export OCI_CLI_AUTH=instance_principal" >>  /home/opc/.bashrc
+  - touch /home/opc/operator.finish
 
 final_message: |
   cloud-init has finished
