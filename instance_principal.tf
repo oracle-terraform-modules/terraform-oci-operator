@@ -1,4 +1,4 @@
-# Copyright (c) 2022, Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2022 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 resource "random_id" "dynamic_group_suffix" {
@@ -18,7 +18,7 @@ resource "oci_identity_dynamic_group" "operator_group" {
   description    = "dynamic group %{ if var.label_prefix != "none" }with label ${var.label_prefix}%{ endif } to allow operator to invoke services"
 
   lifecycle {
-    ignore_changes = [defined_tags]
+    ignore_changes = [defined_tags, name]
   }
 
   matching_rule = "ALL {instance.id = '${join(",", data.oci_core_instance.operator.*.id)}'}"
@@ -36,8 +36,16 @@ resource "oci_identity_policy" "operator_group_policy" {
 
   compartment_id = var.compartment_id
   description    = "policy to allow operator host to call services"
-  name           = join("-", compact([ local.dynamic_group_prefix, "operator-instance-principal" ]))
+  name           = join("-", compact([
+    random_id.dynamic_group_suffix.keepers.label_prefix,
+    "operator-instance-principal",
+    random_id.dynamic_group_suffix.hex
+  ]))
   statements     = ["Allow dynamic-group ${oci_identity_dynamic_group.operator_group[0].name} to manage all-resources in compartment id ${var.compartment_id}"]
+
+  lifecycle {
+    ignore_changes = [name]
+  }
 
   count = var.enable_operator_instance_principal == true ? 1 : 0
 }
