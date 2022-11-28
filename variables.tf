@@ -1,4 +1,4 @@
-# Copyright (c) 2019, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright (c) 2019, 2022 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 # provider parameters
@@ -23,6 +23,12 @@ variable "label_prefix" {
 }
 
 # network parameters
+
+variable "assign_dns" {
+  default     = true
+  description = "Whether to assign DNS records for operator subnet"
+  type        = bool
+}
 
 variable "availability_domain" {
   description = "the AD to place the operator host"

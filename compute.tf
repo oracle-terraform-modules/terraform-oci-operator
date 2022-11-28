@@ -1,4 +1,4 @@
-# Copyright 2017, 2021 Oracle Corporation and/or affiliates.  All rights reserved.
+# Copyright 2017, 2022 Oracle Corporation and/or affiliates.  All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
 
 resource "oci_core_instance" "operator" {
@@ -26,7 +26,7 @@ resource "oci_core_instance" "operator" {
   create_vnic_details {
     assign_public_ip = false
     display_name     = var.label_prefix == "none" ? "operator-vnic" : "${var.label_prefix}-operator-vnic"
-    hostname_label   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
+    hostname_label   = var.assign_dns ? var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator" : null
     nsg_ids          = concat(var.nsg_ids, [oci_core_network_security_group.operator.id])
     subnet_id        = oci_core_subnet.operator.id
   }
