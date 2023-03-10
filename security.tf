@@ -4,7 +4,7 @@
 # operator nsg and rule
 resource "oci_core_network_security_group" "operator" {
   compartment_id = var.compartment_id
-  display_name   = "${var.label_prefix}-operator"
+  display_name   = var.label_prefix == "none" ? "operator" : "${var.label_prefix}-operator"
   vcn_id         = var.vcn_id
 }
 
